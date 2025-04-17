@@ -13,7 +13,7 @@ while True:
         jogador = input("\nDigite seu nick: ")
         inimigo = "inimigo"
 
-        hp = random.randint(200, 1000)
+        hp = random.randint(50, 200)
         ataque1 = random.randint(1, 50)
         defesa1 = random.randint(1, 50)
         print(f"\n== {jogador} ==")
@@ -34,12 +34,12 @@ while True:
 
             print(f"\n== Turno {rodada} ==")
             print(f"HP de {jogador}: {hp_jog1} | HP de {inimigo}: {hp_inimigo}")
+            acao_dict = {1: "atacar", 2: "curar"}
             acao = int(input(f"Vez de {jogador}. Escolha: [1] Atacar ou [2] Curar? "))
-            print(f"\n{jogador} escolheu {acao}")
+            print(f"\n{jogador} escolheu {acao_dict.get(acao, 'Opção inválida')}")
             if acao == 1:
                 ataque = ataque1 - defesa2
                 if ataque <= 0:
-                    ataque1 += 10
                     ataque = ataque1 - defesa2
                 ataque = max(ataque, 0)
                 print(f"O dano em {inimigo} foi de:", ataque)
@@ -52,7 +52,6 @@ while True:
             if acao == "atacar":
                 ataque = ataque2 - defesa1
                 if ataque <= 0:
-                    ataque1 += 10
                     ataque = ataque2 - defesa1
                 ataque = max(ataque, 0)
                 print(f"O dano em {jogador} foi de:", ataque)
@@ -68,4 +67,3 @@ while True:
         print(f"{inimigo} venceu!")
     elif hp_inimigo <= 0:
         print(f"{jogador} venceu!")
-    break
